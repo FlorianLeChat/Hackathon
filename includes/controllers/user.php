@@ -128,11 +128,11 @@
 			//	aussi bien côté client que dans la base de données.
 			$this->storeToken("");
 
-			setcookie("generated_token", "", 1, "/", $_SERVER["HTTP_HOST"], true);
+			setcookie("generated_token", "", 1, "/", $_SERVER["HTTP_HOST"]);
 
 			// On supprime toutes les informations utilisateurs sauvegardées
 			// 	dans les sessions.
-			unset($_SESSION);
+			unset($_SESSION["email"]);
 		}
 	}
 ?>

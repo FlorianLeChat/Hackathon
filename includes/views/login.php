@@ -2,6 +2,14 @@
 	// Point d'entrée de l'environnement des scripts.
 	require_once(__DIR__ . "/../controllers/_main.php");
 
+	// On vérifie si l'utilisateur est connecté.
+	if ($user_login->isConnected())
+	{
+		http_response_code(401);
+		header("Location: index.php");
+		exit();
+	}
+
 	// On tente de connecter l'utilisateur si ce
 	//	n'est pas déjà le cas et si la requête actuelle
 	//	 est une requête POST.
@@ -84,7 +92,7 @@
 			$token = bin2hex(random_bytes(32));
 			$user_login->storeToken($token);
 
-			setcookie("generated_token", $token, time() + $user_login::EXPIRATION_TIME, "/", $_SERVER["HTTP_HOST"], true);
+			setcookie("generated_token", $token, time() + $user_login::EXPIRATION_TIME, "/", $_SERVER["HTTP_HOST"]);
 		}
 
 		http_response_code(302);
