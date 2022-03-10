@@ -174,7 +174,7 @@ $( document ).ready( function ()
 			if ( data == "" )
 			{
 				// La connexion a réussie, on réalise la redirection.
-				window.location.href = "/hackathon/";
+				window.location.href = "/hackathon/?target=index";
 			}
 			else
 			{
@@ -199,7 +199,7 @@ $( document ).ready( function ()
 			if ( data == "" )
 			{
 				// L'inscription est terminée, on réalise la redirection.
-				window.location.href = "/hackathon/";
+				window.location.href = "/hackathon/?target=index";
 			}
 			else
 			{

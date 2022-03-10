@@ -6,7 +6,7 @@
 	if ($user_login->isConnected())
 	{
 		http_response_code(401);
-		header("Location: index.php");
+		header("Location: index.php?target=index");
 		exit();
 	}
 
@@ -96,7 +96,7 @@
 		}
 
 		http_response_code(302);
-		header("Location: index.php");
+		header("Location: index.php?target=index");
 		exit();
 	}
 ?>
