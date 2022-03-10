@@ -1,1 +1,1 @@
-localhost,hackathon,root,,utf8,3306
+host,database,username,password,charset,port
