@@ -8,6 +8,41 @@
 
 	use Notes\Models\User;
 
+	// Classe permettant de créer un utilisateur.
+	final class UserCreation extends User
+	{
+		//
+		//
+		//
+		public function register(): void
+		{
+
+		}
+
+		//
+		// Permet de recevoir les demandes de création d'un nouveau mot de passe.
+		//
+		public function requestNewPassword(array $data): void
+		{
+			// On vérifie si la demande se réalise sur le serveur principal ou sur
+			//	le serveur de développement (WAMP).
+			if (str_contains($_SERVER["SERVER_NAME"], "florian-dev.fr"))
+			{
+				$email = $data["email"] ?? "";
+
+				$to = $email;
+				$subject = "Demande de récupération d'un nouveau mot de passe";
+				$message = "Voici le lien de récupération : https://www.florian-dev.fr/hackathon/?target=login&new_password=$email";
+				$headers = array(
+					"From" => "Hackathon <admin@florian-dev.fr>",
+					"X-Mailer" => "PHP/" . phpversion()
+				);
+
+				mb_send_mail($to, $subject, $message, $headers);
+			}
+		}
+	}
+
 	// Classe permettant d'authentifier un utilisateur.
 	final class UserAuthentication extends User
 	{

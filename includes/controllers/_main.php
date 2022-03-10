@@ -52,8 +52,11 @@
 
 	$upload = new Notes\Controllers\FileHandler();		// Gestion des fichiers téléversés.
 
-	$user = new Notes\Controllers\UserAuthentication();	// Mécanisme d'authentification.
-	$user->connector = $connector;
+	$user_login = new Notes\Controllers\UserAuthentication();	// Mécanisme d'authentification.
+	$user_login->connector = $connector;
+
+	$user_register = new Notes\Controllers\UserAuthentication();	// Mécanisme d'inscription.
+	$user_register->connector = $connector;
 
 	// On récupère enfin la page demandée.
 	$file = htmlentities($_GET["target"] ?? "", ENT_QUOTES);
