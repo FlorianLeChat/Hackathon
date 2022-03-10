@@ -1,3 +1,5 @@
+{{ head_html }}
+
 <section id="co">
 	<div class="formContainer">
 		<div class="form-wrapper">
@@ -12,11 +14,11 @@
 					<!-- Formulaire de connexion -->
 					<form id="loginForm">
 						<!-- Adresse électronique. -->
-						<input type="email" class="champs" placeholder="email" autocomplete="off" />
+						<input type="email" id="login_email" class="champs" placeholder="email" autocomplete="off" />
 						<small>Error message</small>
 
 						<!-- Mot de passe -->
-						<input type="password" name="password" class="champs" placeholder="mot de passe" autocomplete="off" />
+						<input type="password" name="password" id="login_password" class="champs" placeholder="mot de passe" autocomplete="off" />
 						<small>Error message</small> <br>
 
 						<!-- Se souvenir de la connexion -->
@@ -28,11 +30,11 @@
 						<input id="showmdp" type="checkbox" />
 
 						<!-- Mot de passe oublié -->
-						<a href="#"  class="link" >Mot de passe oublié ?</a>
+						<a href="#" id="missing_password" class="link" >Mot de passe oublié ?</a>
 
 						<br />
 
-						<button class="formButton">Connexion</button>
+						<button type="submit" class="formButton">Connexion</button>
 					</form>
 
 					<!-- Formulaire d'inscription -->
@@ -79,7 +81,7 @@
 						<label for="showmdp1">Afficher le mot de passe</label>
 						<input id="showmdp1" type="checkbox" />
 
-						<button class="formButton">Inscription</button>
+						<button type="submit" class="formButton">Inscription</button>
 					</form>
 				</div>
 			</div>
