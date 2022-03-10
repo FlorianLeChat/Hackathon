@@ -161,35 +161,5 @@
 				return "Il est impossible de déplacer le fichier temporaire.";
 			}
 		}
-
-		//
-		// Permet de générer la structure HTML qui permet de choisir le
-		//	dossier de destination des fichiers téléversés.
-		//
-		public function generateHTMLPath(): string
-		{
-			// On lance une analyse du dossier des images du serveur.
-			$html = "";
-			$elements = scandir($this::PATH);
-
-			// On applique ensuite un micro-correctif pour les systèmes Linux.
-			// Pour plus de détails, rendez-vous dans « views/projects.php »
-			//	entre la ligne 25 et 33.
-			$elements = array_diff($elements, array("..", "."));
-			$elements = array_values($elements);
-
-			// On créé après la liste des éléments marqués comme étant un
-			//	dossier et non pas un fichier.
-			foreach ($elements as $element)
-			{
-				if (is_dir($this::PATH . $element))
-				{
-					$html .= "<option value=\"$element\">$element</option>\n";
-				}
-			}
-
-			// On retourne enfin le HTML généré.
-			return $html;
-		}
 	}
 ?>

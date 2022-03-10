@@ -22,7 +22,7 @@
 		{
 			// On exécute une requête SQL pour récupérer le jeton
 			//	d'authentification enregistré dans la base de données.
-			$query = $this->connector->prepare("SELECT `username`, `password`, `creation_time` FROM `users` WHERE `access_token` = ?;");
+			$query = $this->connector->prepare("SELECT `email`, `password`, `creation_time` FROM `users` WHERE `access_token` = ?;");
 			$query->execute([$token]);
 
 			$result = $query->fetch();
@@ -32,7 +32,7 @@
 			{
 				// Si elle est valide, on assigne certaines variables
 				//	à l'utilisateur.
-				$this->setUsername($result["username"]);
+				$this->setEmail($result["email"]);
 				$this->setPassword($result["password"]);
 				$this->setToken($token);
 
@@ -49,8 +49,8 @@
 		//
 		public function storeToken(string $token): void
 		{
-			$query = $this->connector->prepare("UPDATE `users` SET `access_token` = ? WHERE `username` = ?;");
-			$query->execute([$token, $this->getUsername()]);
+			$query = $this->connector->prepare("UPDATE `users` SET `access_token` = ? WHERE `email` = ?;");
+			$query->execute([$token, $this->getEmail()]);
 		}
 
 		//
@@ -60,14 +60,14 @@
 		public function authenticate(array $data): bool
 		{
 			// On récupère les les valeurs du formulaire.
-			$username = $data["username"] ?? "";
+			$email = $data["email"] ?? "";
 			$password = $data["password"] ?? "";
 
 			// On effectue ensuite une requête SQL pour vérifier
 			//	si un enregistrement est présent avec les identifiants
 			//	donnés lors de l'étape précédente.
-			$query = $this->connector->prepare("SELECT `password` FROM `users` WHERE `username` = ?;");
-			$query->execute([$username]);
+			$query = $this->connector->prepare("SELECT `password` FROM `users` WHERE `email` = ?;");
+			$query->execute([$email]);
 
 			$result = $query->fetch();
 
@@ -76,7 +76,7 @@
 			if (is_array($result) && count($result) > 0 && password_verify($password, $result["password"]))
 			{
 				// L'authentification a réussie.
-				$this->setUsername($username);
+				$this->setEmail($email);
 				$this->setPassword($result["password"]);
 
 				return true;

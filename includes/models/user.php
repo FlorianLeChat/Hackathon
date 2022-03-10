@@ -6,31 +6,31 @@
 
 	abstract class User
 	{
-		protected string $username = "";
+		protected string $email = "";
 		protected string $password = "";
 		protected string $token = "";
 
-		// Nom d'utilisateur.
-		public function setUsername(string $username)
+		// Adresse électronique.
+		public function setEmail(string $email)
 		{
-			$this->username = $username;
+			$this->email = $email;
 
 			if (isset($_SESSION))
 			{
 				// Enregistrement dans la session active.
-				$_SESSION["username"] = $this->username;
+				$_SESSION["email"] = $this->email;
 			}
 		}
 
-		public function getUsername(): string
+		public function getEmail(): string
 		{
-			if (!empty($_SESSION["username"]))
+			if (!empty($_SESSION["email"]))
 			{
 				// Récupération dans la session active.
-				$this->username = $_SESSION["username"];
+				$this->email = $_SESSION["email"];
 			}
 
-			return $this->username;
+			return $this->email;
 		}
 
 		// Mot de passe (hashé) de l'utilisateur.
@@ -58,7 +58,7 @@
 		// État de la connexion.
 		public function isConnected(): bool
 		{
-			return !empty($this->getUsername());
+			return !empty($this->getEmail());
 		}
 	}
 ?>

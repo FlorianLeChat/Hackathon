@@ -43,8 +43,6 @@
 	$connector = new Notes\Controllers\Connector();		// Connexion à la base de données.
 	$connector = $connector->getPDO();
 
-	$public_data = new Notes\Controllers\PublicData();	// Données publiques du site.
-
 	// On récupère enfin la page demandée.
 	$file = htmlentities($_GET["target"] ?? "", ENT_QUOTES);
 
