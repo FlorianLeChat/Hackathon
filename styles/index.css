@@ -1,0 +1,166 @@
+@import url(reset.css);
+
+
+header { /*background-color: black;
+         opacity: 0.1;
+         height : 5em; 
+ */
+
+}
+
+
+body {background-color: skyblue;}
+
+footer {
+    margin-top: 5em;
+    
+}
+
+
+header > form:first-of-type { 
+	/*float: right;*/
+	position: absolute;
+	right: 0;
+	z-index: 2;
+ }
+
+
+section {background-color: gray;
+		 width: 40%;
+		 height: 50vH;
+		 margin-left: 5%;
+		 margin-right: 5%;
+		 margin-top: 10%;
+	
+		/* display: inline-block;*/
+
+}
+
+section#todo {
+	margin-left: 5%;
+	float: left;
+}
+
+section#done{
+	
+	float: right;
+}
+
+section div {background-color: white;
+			margin : 25px 25px 25px 25px ; 
+			/*height: 10%;
+			width: 85%;
+			overflow: hidden;
+*/
+}
+
+section div h2{
+	font-size: 1.8em;
+	margin-left: 20px;
+	font-family: sans-serif;
+
+	
+}
+
+section div h2 ~p {
+	font-size: 1.2em;
+	font-family: sans-serif;
+	margin-top: 15px;
+	margin-left: 25px;
+	text-align: justify;
+	width: 80%;	
+}
+
+.avatar{
+	float: right;
+	border: 1px solid transparent;
+	border-radius: 50px;
+	background-color: purple;
+	height: 50px;
+	width: 50px;
+
+}
+
+.dropdown{
+	
+	float: right;
+	margin-top:-337px ;
+	margin-left: 400px;
+}
+
+
+ /* Dropdown Button */
+.dropbtn {
+  
+    color: white;
+    padding: 12px;
+    background-color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+button > i {
+	color: black;
+	font-size: 2em;
+}
+
+
+.gg{
+	margin-top: 20px;
+	margin-left: 40%;
+	font-size: 2em;
+	background-color: rgba(253, 253, 0253, 0.596);
+	border-radius: 50px;
+	padding:10px ;
+	cursor: pointer;
+}
+
+#myDropdown{
+	cursor: pointer;
+	margin-left: -10px;
+	margin-top: -20px;
+}
+
+#myDropdown a:hover{
+	background-color: grey;
+}
+
+#creation{
+display: block;
+width: 25em;
+height: 25em;
+background-color: black;
+position: absolute;
+top: 0;
+right: 0;
+display: none;
+
+}
