@@ -167,11 +167,21 @@ $( document ).ready( function ()
 	{
 		const email_value = $( "#login_email" ).val();
 		const password_value = $( "#login_password" ).val();
+		const remember_me = $( "#rememberme" ).is( ":checked" );
 
-		$.post( "includes/views/login.php", { email: email_value, password: password_value, type: 1 }, function ( data, _status )
+		$.post( "includes/views/login.php", { email: email_value, password: password_value, remember_me: remember_me, type: 1 }, function ( data, _status )
 		{
-			$( ".jquery" ).remove();
-			$( "#loginForm" ).append( `<p class=\"jquery\">${ data }</p>` );
+			if ( data == "" )
+			{
+				// La connexion a réussie, on réalise la redirection.
+				window.location.href = "/hackathon/";
+			}
+			else
+			{
+				// Une erreur a dû se produire, on affiche le message.
+				$( ".jquery" ).remove();
+				$( "#loginForm" ).append( `<p class=\"jquery\">${ data }</p>` );
+			}
 		} );
 
 		event.preventDefault();
@@ -182,11 +192,21 @@ $( document ).ready( function ()
 	{
 		const email_value = $( "#email" ).val();
 		const password_value = $( "#password" ).val();
+		const remember_me = $( "#rememberme1" ).is( ":checked" );
 
-		$.post( "includes/views/login.php", { email: email_value, password: password_value, type: 3 }, function ( data, _status )
+		$.post( "includes/views/login.php", { email: email_value, password: password_value, remember_me: remember_me, type: 3 }, function ( data, _status )
 		{
-			$( ".jquery" ).remove();
-			$( "#registerForm" ).append( `<p class=\"jquery\">${ data }</p>` );
+			if ( data == "" )
+			{
+				// L'inscription est terminée, on réalise la redirection.
+				window.location.href = "/hackathon/";
+			}
+			else
+			{
+				// Une erreur a dû se produire, on affiche le message.
+				$( ".jquery" ).remove();
+				$( "#registerForm" ).append( `<p class=\"jquery\">${ data }</p>` );
+			}
 		} );
 
 		event.preventDefault();

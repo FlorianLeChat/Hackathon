@@ -5,7 +5,7 @@
 	require_once("includes/controllers/_main.php");
 
 	// En-tête de la page.
-	$head_html = $twig->render("1_head.twig",
+	$head_html = $twig->render("_head.twig",
 	[
 		"url" => $_SERVER["SERVER_NAME"],
 		"file" => $file,
