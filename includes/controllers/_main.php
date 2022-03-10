@@ -43,14 +43,11 @@
 	// On réalise la création de certaines variables cruciales.
 	require_once("database.php");
 	require_once("user.php");
-	require_once("file.php");
 
 	session_start();
 
 	$connector = new Notes\Controllers\Connector();				// Connexion à la base de données.
 	$connector = $connector->getPDO();
-
-	$upload = new Notes\Controllers\FileHandler();				// Gestion des fichiers téléversés.
 
 	$user_login = new Notes\Controllers\UserAuthentication();	// Mécanisme d'authentification.
 	$user_login->connector = $connector;
