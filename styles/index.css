@@ -3,7 +3,7 @@
 
 header { /*background-color: black;
          opacity: 0.1;
-         height : 5em; 
+         height : 5em;
  */
 
 }
@@ -13,11 +13,11 @@ body {background-color: skyblue;}
 
 footer {
     margin-top: 5em;
-    
+
 }
 
 
-header > form:first-of-type { 
+header > form:first-of-type {
 	/*float: right;*/
 	position: absolute;
 	right: 0;
@@ -31,7 +31,7 @@ section {background-color: gray;
 		 margin-left: 5%;
 		 margin-right: 5%;
 		 margin-top: 10%;
-	
+
 		/* display: inline-block;*/
 
 }
@@ -42,24 +42,30 @@ section#todo {
 }
 
 section#done{
-	
+
 	float: right;
 }
 
 section div {background-color: white;
-			margin : 25px 25px 25px 25px ; 
+			margin : 25px 25px 25px 25px ;
 			/*height: 10%;
 			width: 85%;
 			overflow: hidden;
 */
 }
 
+img{
+    width: 20px;
+    height: 20px;
+}
+
+
 section div h2{
 	font-size: 1.8em;
 	margin-left: 20px;
 	font-family: sans-serif;
 
-	
+
 }
 
 section div h2 ~p {
@@ -68,7 +74,7 @@ section div h2 ~p {
 	margin-top: 15px;
 	margin-left: 25px;
 	text-align: justify;
-	width: 80%;	
+	width: 80%;
 }
 
 .avatar{
@@ -82,7 +88,7 @@ section div h2 ~p {
 }
 
 .dropdown{
-	
+
 	float: right;
 	margin-top:-337px ;
 	margin-left: 400px;
@@ -91,7 +97,7 @@ section div h2 ~p {
 
  /* Dropdown Button */
 .dropbtn {
-  
+
     color: white;
     padding: 12px;
     background-color: white;
