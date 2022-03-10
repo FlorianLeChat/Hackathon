@@ -1,15 +1,18 @@
-{# Bouton deconnexion #}
+{{ head_html }}
 
- <form method='POST' action='page_check.php'>
-			  <input type='submit' name='deconnexion' value='Se déconnecter '/>
- </form>
+{# Bouton deconnexion #}
+<header>
+	<form method='POST' action='?target=logout'>
+		<input type='submit' name='deconnexion' value='Se déconnecter '/>
+	</form>
+</header>
 
 
 {# Colonne à faire #}
 
 <section id="todo">
 
-<div>
+<div class="note">
 	{# Div fictif de note de page #}
  <h2> Titre de la note </h2>
 
@@ -47,8 +50,6 @@
 </div>
 
 
-
-
 {# Bouton + pour ajouter une notes qui fait apparaître le form  #}
 <i class="fa-solid fa-plus"></i>
 
@@ -56,24 +57,47 @@
 </section>
 
 
-
 <section id="done">
 
-	 <h2> Titre de la note </h2>
+<div class="note">
+  {# Div fictif de note de page #}
+ <h2> Titre de la note </h2>
 
-	 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+ <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+ quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-	 </p>
+ </p>
+
 
  <div class="avatar">
-	<img src="../output_css/images/fesfh.png" alt="avatar">
+  <img src="../output_css/images/fesfh.png" alt="avatar">
  </div>
 
+
+
+{# Les boutons d'actions #}
+ <div class="dropdown">
+
+  {# Appuie sur le ... pour voir toutes les actions #}
+
+  <button onclick="myFunction()" class="dropbtn" > <i class="fa-solid fa-ellipsis"></i></button>
+  <div id="myDropdown" class="dropdown-content">
+    <a id="modifer">Modifier</a>
+    <a id="Supprimer">Supprimer</a>
+    <a id="Exporter">Exporter</a>
+    <a id="Partager">Partager</a>
+  </div>
+</div>
+
+
+</div>
+
+
+{# Bouton + pour ajouter une notes qui fait apparaître le form  #}
 <i class="fa-solid fa-plus"></i>
 
 </section>
