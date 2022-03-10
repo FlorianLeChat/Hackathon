@@ -42,18 +42,25 @@
 
 	// On réalise la création de certaines variables cruciales.
 	require_once("database.php");
+	require_once("user.php");
+	require_once("file.php");
 
 	session_start();
 
 	$connector = new Notes\Controllers\Connector();		// Connexion à la base de données.
 	$connector = $connector->getPDO();
 
+	$upload = new Notes\Controllers\FileHandler();		// Gestion des fichiers téléversés.
+
+	$user = new Notes\Controllers\UserAuthentication();	// Mécanisme d'authentification.
+	$user->connector = $connector;
+
 	// On récupère enfin la page demandée.
 	$file = htmlentities($_GET["target"] ?? "", ENT_QUOTES);
 
-	// if (empty($file) || ($file != "index" && $file != "projects" && $file != "skills" && $file != "contact"))
-	// {
-	// 	// Si la variable est vide ou invalide, on cible la page par défaut.
-	// 	$file = "index";
-	// }
+	if (empty($file))
+	{
+		// Si la variable est vide ou invalide, on cible la page par défaut.
+		$file = "index";
+	}
 ?>
