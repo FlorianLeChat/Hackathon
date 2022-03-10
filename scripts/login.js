@@ -152,9 +152,9 @@ $( document ).ready( function ()
 	// Permet d'envoyer le mail de récupération en cas de perte du mot de passe.
 	$( "#missing_password" ).click( function ( event )
 	{
-		let email_value = prompt( "Saisissez votre adresse électronique." ).toLowerCase();
+		const email_value = prompt( "Saisissez votre adresse électronique." ).toLowerCase();
 
-		$.post( "includes/views/login.php", { email: email_value, type: false }, function ( _data, _status )
+		$.post( "includes/views/login.php", { email: email_value, type: 2 }, function ( _data, _status )
 		{
 			alert( "Vous allez recevoir un mail d'ici quelques instants." );
 		} );
@@ -165,12 +165,13 @@ $( document ).ready( function ()
 	// Permet de gérer le système de connexion de l'utilisateur.
 	$( "#loginForm" ).submit( function ( event )
 	{
-		let email_value = $( "login_email" ).val();
-		let password_value = $( "#login_password" ).val();
+		const email_value = $( "#login_email" ).val();
+		const password_value = $( "#login_password" ).val();
 
-		$.post( "includes/views/login.php", { email: email_value, password: password_value, type: true }, function ( data, _status )
+		$.post( "includes/views/login.php", { email: email_value, password: password_value, type: 1 }, function ( data, _status )
 		{
-			$( "#loginForm" ).append( `<p>${ data }</p>` );
+			$( ".jquery" ).remove();
+			$( "#loginForm" ).append( `<p class=\"jquery\">${ data }</p>` );
 		} );
 
 		event.preventDefault();
@@ -179,6 +180,14 @@ $( document ).ready( function ()
 	// Permet de gérer le système d'inscription du site.
 	$( "#registerForm" ).submit( function ( event )
 	{
+		const email_value = $( "#email" ).val();
+		const password_value = $( "#password" ).val();
+
+		$.post( "includes/views/login.php", { email: email_value, password: password_value, type: 3 }, function ( data, _status )
+		{
+			$( ".jquery" ).remove();
+			$( "#registerForm" ).append( `<p class=\"jquery\">${ data }</p>` );
+		} );
 
 		event.preventDefault();
 	} );

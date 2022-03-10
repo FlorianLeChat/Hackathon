@@ -47,15 +47,15 @@
 
 	session_start();
 
-	$connector = new Notes\Controllers\Connector();		// Connexion à la base de données.
+	$connector = new Notes\Controllers\Connector();				// Connexion à la base de données.
 	$connector = $connector->getPDO();
 
-	$upload = new Notes\Controllers\FileHandler();		// Gestion des fichiers téléversés.
+	$upload = new Notes\Controllers\FileHandler();				// Gestion des fichiers téléversés.
 
 	$user_login = new Notes\Controllers\UserAuthentication();	// Mécanisme d'authentification.
 	$user_login->connector = $connector;
 
-	$user_register = new Notes\Controllers\UserAuthentication();	// Mécanisme d'inscription.
+	$user_register = new Notes\Controllers\UserCreation();		// Mécanisme d'inscription.
 	$user_register->connector = $connector;
 
 	// On récupère enfin la page demandée.

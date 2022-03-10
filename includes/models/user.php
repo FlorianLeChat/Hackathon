@@ -8,6 +8,7 @@
 	{
 		protected string $email = "";
 		protected string $password = "";
+		protected string $avatar = "";
 		protected string $token = "";
 
 		// Adresse électronique.
@@ -42,6 +43,17 @@
 		public function getPassword(): string
 		{
 			return $this->password;
+		}
+
+		// Avatar.
+		public function setAvatar(string $avatar)
+		{
+			$this->avatar = $avatar;
+		}
+
+		public function getAvatar(): string
+		{
+			return $this->avatar;
 		}
 
 		// Jeton d'authentification.

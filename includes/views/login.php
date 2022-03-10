@@ -10,23 +10,52 @@
 
 	if (!$connected && $_SERVER["REQUEST_METHOD"] == "POST")
 	{
-		$type = $_POST["type"] ?? true;
+		$type = $_POST["type"] ?? 1;
+		$email = trim($_POST["email"] ?? "");
+		$password = trim($_POST["password"] ?? "");
 
-		if ($type)
+		// On vérifie la longueur de l'adresse électronique et
+		//	le mot de passe.
+		if ((mb_strlen($email) < 5 || mb_strlen($password) < 5) && $type != 2)
 		{
-			$connected = $user_login->authenticate($_POST);
-
-			// Si le script continue ici, alors l'authentification
-			//	semble avoir échouée, on affiche un message d'erreur.
-			echo("L'authentification a échouée. Veuillez recommencer.");
+			echo("L'adresse électronique ou le mot de passe est trop court.");
 		}
 		else
 		{
-			$user_register->requestNewPassword($_POST);
+			// On vérifie l'adresse électronique de l'utilisateur.
+			$domain = explode("@", $email)[1] ?? "invalid";
 
-			// On signale à l'utilisateur qu'un mail de récupération va
-			//	être envoyé pour retrouver un mot de passe.
-			echo("Un mail va être envoyé sous peu pour récupérer votre mot de passe.")
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !checkdnsrr($domain, "MX"))
+			{
+				echo("L'adresse électronique renseignée est incorrecte.");
+			}
+			else
+			{
+				// On détermine le type de connexion (ou de récupération).
+				if ($type == 1)
+				{
+					$connected = $user_login->authenticate($email, $password);
+
+					// Si le script continue ici, alors l'authentification
+					//	semble avoir échouée, on affiche un message d'erreur.
+					echo("L'authentification a échouée. Veuillez recommencer.");
+				}
+				elseif ($type == 2)
+				{
+					$user_register->requestNewPassword($email);
+
+					// On signale à l'utilisateur qu'un mail de récupération va
+					//	être envoyé pour retrouver un mot de passe.
+					echo("Un mail va être envoyé sous peu pour récupérer votre mot de passe.");
+				}
+				else
+				{
+					$user_register->storeNewUser($email, password_hash($password, PASSWORD_DEFAULT));
+
+					// On force l'état de connexion pour les utilisateurs inscrits.
+					$connected = true;
+				}
+			}
 		}
 	}
 	else

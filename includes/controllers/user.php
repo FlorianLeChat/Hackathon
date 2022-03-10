@@ -12,24 +12,26 @@
 	final class UserCreation extends User
 	{
 		//
+		// Permet de créer une nouvelle inscription.
 		//
-		//
-		public function register(): void
+		public function storeNewUser(string $email, string $password): void
 		{
+			$query = $this->connector->prepare("INSERT IGNORE INTO `users` (`email`, `password`) VALUES (?, ?);");
+			$query->execute([$email, $password]);
 
+			$this->setEmail($email);
+			$this->setPassword($password);
 		}
 
 		//
 		// Permet de recevoir les demandes de création d'un nouveau mot de passe.
 		//
-		public function requestNewPassword(array $data): void
+		public function requestNewPassword(string $email): void
 		{
 			// On vérifie si la demande se réalise sur le serveur principal ou sur
 			//	le serveur de développement (WAMP).
 			if (str_contains($_SERVER["SERVER_NAME"], "florian-dev.fr"))
 			{
-				$email = $data["email"] ?? "";
-
 				$to = $email;
 				$subject = "Demande de récupération d'un nouveau mot de passe";
 				$message = "Voici le lien de récupération : https://www.florian-dev.fr/hackathon/?target=login&new_password=$email";
@@ -92,13 +94,9 @@
 		// Permet d'authentifier un utilisateur au niveau de la
 		//	base de données.
 		//
-		public function authenticate(array $data): bool
+		public function authenticate(string $email, string $password): bool
 		{
-			// On récupère les les valeurs du formulaire.
-			$email = $data["email"] ?? "";
-			$password = $data["password"] ?? "";
-
-			// On effectue ensuite une requête SQL pour vérifier
+			// On effectue une requête SQL pour vérifier
 			//	si un enregistrement est présent avec les identifiants
 			//	donnés lors de l'étape précédente.
 			$query = $this->connector->prepare("SELECT `password` FROM `users` WHERE `email` = ?;");
@@ -106,7 +104,7 @@
 
 			$result = $query->fetch();
 
-			// On vérifie enfin le résultat de la requête SQL avant
+			// On vérifie le résultat de la requête SQL avant
 			//	de comparer le mot de passe hashé par l'entrée utilisateur.
 			if (is_array($result) && count($result) > 0 && password_verify($password, $result["password"]))
 			{
