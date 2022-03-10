@@ -34,9 +34,14 @@
 		}
 	}
 
+	// On demande le chargement du moteur TWIG.
+	require_once(__DIR__ . "/../../vendor/autoload.php");
+
+	$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . "/../../templates");
+	$twig = new \Twig\Environment($loader, ["debug" => true, "autoescape" => false]);
+
 	// On réalise la création de certaines variables cruciales.
 	require_once("database.php");
-	require_once("form.php");
 
 	session_start();
 
